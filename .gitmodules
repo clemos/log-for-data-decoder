@@ -1,0 +1,6 @@
+[submodule "hx-kcs"]
+	path = hx-kcs
+	url = git@github.com:clemos/hx-kcs.git
+[submodule "www"]
+	path = www
+	url = git@github.com:clemos/LogForData2013.git
