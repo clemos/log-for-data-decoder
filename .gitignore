@@ -1,0 +1,5 @@
+lib/*
+bin/*
+src_js/*
+*.sublime-project
+*.sublime-workspace
