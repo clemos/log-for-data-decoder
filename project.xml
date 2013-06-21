@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+	<app file="KCS" main="App" path="build" />
+
+	<source path="src" />
+	<source path="hx-kcs" />
+
+	<haxelib name="openfl" />
+	<haxelib name="hxs" />
+	<source path="openfl-mic" />
+	
+</project>

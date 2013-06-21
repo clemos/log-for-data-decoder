@@ -63,6 +63,7 @@ class App {
 		if( root.stage != null ) init();
 		else root.addEventListener( Event.ADDED_TO_STAGE , init );
 
+		#if !openfl
 		ext = if( flash.external.ExternalInterface.available ){
 			var ctx = new haxe.remoting.Context();
 			ctx.addObject( "SwfDecoder" , this );
@@ -70,6 +71,7 @@ class App {
 		}else{
 			null;
 		}
+		#end
 
 		getInputs();
 		

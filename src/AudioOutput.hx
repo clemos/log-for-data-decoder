@@ -2,8 +2,10 @@ package ;
 
 import flash.media.Sound;
 import hxs.Signal1;
-import haxe.io.BytesData;
+//import haxe.io.BytesData;
 import flash.events.SampleDataEvent;
+
+private typedef BytesData = flash.utils.ByteArray;
 
 class AudioOutput {
 

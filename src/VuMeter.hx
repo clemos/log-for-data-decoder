@@ -4,9 +4,10 @@ import flash.events.SampleDataEvent;
 import flash.media.Microphone;
 import haxe.io.Bytes;
 import haxe.io.BytesBuffer;
-import haxe.io.BytesData;
+//import haxe.io.BytesData;
 import hxs.Signal1;
 
+private typedef BytesData = flash.utils.ByteArray;
 
 class VuMeter extends Sprite {
 	
