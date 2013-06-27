@@ -32,7 +32,7 @@ class App {
 	var currentSignal : hxs.Signal1<BytesData>;
 
 	var inputVolume : Float = 1.0;
-	var outputVolume : Float = 0.0;
+	var outputVolume : Float = 1.0;
 
 	var output : AudioOutput;
 
@@ -64,6 +64,7 @@ class App {
 		else root.addEventListener( Event.ADDED_TO_STAGE , init );
 
 		ext = if( flash.external.ExternalInterface.available ){
+			trace("connecting to external interface");
 			var ctx = new haxe.remoting.Context();
 			ctx.addObject( "SwfDecoder" , this );
 			ExternalConnection.jsConnect("decoder",ctx);
@@ -71,12 +72,17 @@ class App {
 			null;
 		}
 
-		getInputs();
+		if( ext == null ){
+			getInputs();
+		}
 		
 	}
 
+	@:keep
 	function getInputs(){
+		trace("getting inputs");
 		if( ext != null ){
+			trace("sending inputs to js");
 			ext.JsDecoder.onInputs.call([Mic.names]);
 		}else{
 			attachInput();
@@ -84,6 +90,7 @@ class App {
 	}
 
 	function attachInput( id = 0 , name = "mono" ){
+		trace("attaching #" + id);
 		var input = inputs[id];
 		input.volume = inputVolume;
 
@@ -95,7 +102,10 @@ class App {
 		}
 
 		vumeters.mono.signal = signal;
+
 		output.signal = signal;
+		output.volume = outputVolume;
+
 		signal.add( decode );
 
 		currentSignal = signal;
@@ -111,12 +121,17 @@ class App {
 		}
 	}
 
+	@:keep
 	function setInputVolume( v : Float ){
 		inputVolume = v;
+		if( input != null )
+			input.volume = inputVolume;
 	}
 
+	@:keep
 	function setOutputVolume( v : Float ){
 		outputVolume = v;
+		output.volume = outputVolume;
 	}
 
 	function init(?_=null){

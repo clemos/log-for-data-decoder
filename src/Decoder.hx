@@ -21,7 +21,7 @@ class Decoder {
 	}
 
 	public dynamic function onInputs( inputs ){
-		trace("here");
+		trace("shouldn't be here");
 		trace(inputs);
 	}
 
@@ -29,11 +29,11 @@ class Decoder {
 		cnx.SwfDecoder.attachInput.call( [id , name] );
 	}
 
-	public function setInputVolume( v ){
+	public function setInputVolume( v : Float ){
 		cnx.SwfDecoder.setInputVolume.call( [v] );
 	}
 
-	public function setOutputVolume( v ){
+	public function setOutputVolume( v : Float ){
 		cnx.SwfDecoder.setOutputVolume.call( [v] );
 	}
 
@@ -48,10 +48,12 @@ class Decoder {
             {allowScriptAccess:"always"} , 
             {} , 
             function(){
-            	Decoder.current = new Decoder();
-				if( cb != null ){
-					cb( Decoder.current );
-				}
+            	js.Browser.window.setTimeout( function(){
+            		Decoder.current = new Decoder();
+            		if( cb != null ){
+						cb( Decoder.current );
+					}
+            	}, 500);
 			}
         );
 	}

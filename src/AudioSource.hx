@@ -18,6 +18,7 @@ class AudioSource {
 			left : new Signal1(),
 			right : new Signal1()
 		};
+		
 	}
 
 	function dispatch( e : { data : BytesData } ){
